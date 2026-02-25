@@ -22,7 +22,10 @@ GitHub Copilot をはじめとする AI コーディングエージェントに�
 | [research.md](research.md) | 調査レポート | 6つのエージェント指示手法をまとめた Markdown レポート |
 | [pptx_skill_report.md](pptx_skill_report.md) | セットアップレポート | pptx Agent Skill のセットアップ手順・使い方・クリーンアップをまとめたレポート |
 | [AGENTS_md_手法まとめ.pptx](AGENTS_md_手法まとめ.pptx) | プレゼンテーション | research.md の内容を元に自動生成した 12 枚構成の PowerPoint スライド |
+| [slides.md](slides.md) | スライドビューア | 全12スライドを PNG 画像で参照できる Markdown ファイル |
+| [slides/](slides/) | 画像フォルダ | 各スライドを 1920×1080 PNG でエクスポートしたもの（slide_01.png 〜 slide_12.png） |
 | [create_presentation.js](create_presentation.js) | ツール | PPTX を生成した pptxgenjs スクリプト |
+| [export_slides.py](export_slides.py) | ツール | PowerPoint COM で PPTX を PNG 画像にエクスポートする Python スクリプト |
 
 ---
 
@@ -49,10 +52,15 @@ Agentへの指示/
 ├── README.md                    ← このファイル
 ├── research.md                  ← 6つの手法の調査レポート
 ├── pptx_skill_report.md         ← pptx スキルのセットアップレポート
+├── slides.md                    ← 全スライドを画像で参照できる Markdown ビューア
 ├── AGENTS_md_手法まとめ.pptx    ← 生成されたプレゼンテーション（12枚）
 ├── create_presentation.js       ← PPTX 生成スクリプト（pptxgenjs）
+├── export_slides.py             ← スライド → PNG エクスポートスクリプト（pywin32 / PowerPoint COM）
 ├── package.json                 ← Node.js プロジェクト定義
 ├── package-lock.json            ← 依存関係ロックファイル
+│
+├── slides/                      ← エクスポートされたスライド画像（1920×1080 PNG）
+│   ├── slide_01.png 〜 slide_12.png
 │
 ├── node_modules/                ← npm 依存パッケージ（pptxgenjs など）
 │
@@ -117,6 +125,18 @@ npm install
 
 # PPTX の再生成
 node create_presentation.js
+```
+
+## スライド画像の再エクスポート
+
+PowerPoint がインストールされた Windows 環境で実行してください。
+
+```bash
+# pywin32 のインストール（初回のみ）
+pip install pywin32
+
+# スライド画像のエクスポート（slides/ に slide_01.png 〜 slide_12.png を生成）
+python export_slides.py
 ```
 
 ---
