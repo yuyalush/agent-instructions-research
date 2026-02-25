@@ -115,6 +115,45 @@ GitHub Copilot（VS Code）が `.pptx` ファイルに関するタスクを検�
 
 セットアップの詳細は [pptx_skill_report.md](pptx_skill_report.md) を参照してください。
 
+### 他のリポジトリへ導入するときのプロンプト例
+
+作業中のリポジトリに pptx スキルを導入したい場合、GitHub Copilot（Agent モード）に以下のようなプロンプトを送ると自動でセットアップできます。
+
+---
+
+**ミニマム版（スキルファイルのコピーのみ）**
+
+```
+.github/skills/pptx/ ディレクトリを作成し、
+https://github.com/anthropics/skills/tree/main/skills/pptx
+の内容（SKILL.md・editing.md・pptxgenjs.md・scripts/ 以下すべて）を
+git sparse-checkout でクローンしてコピーしてください。
+```
+
+---
+
+**フル版（依存ライブラリの確認まで含む）**
+
+```
+このプロジェクトに Anthropic の pptx Agent Skill を導入してください。
+
+手順：
+1. https://github.com/anthropics/skills の pptx スキルを
+   git sparse-checkout を使って取得し、
+   .github/skills/pptx/ にコピーする
+2. Node.js（v18 以上）と pptxgenjs がインストールされているか確認する。
+   なければインストール手順を示す
+3. スキルが正しく配置されたか（SKILL.md が存在するか）最後に確認する
+
+完了後、スキルの使い方を簡潔に説明してください。
+```
+
+---
+
+> **ポイント**  
+> - `SKILL.md` に `user-invokable: true` が設定されているため、セットアップ後はチャットで「.pptx ファイルを編集して」と話しかけるだけでスキルが自動的に読み込まれます。  
+> - `pptxgenjs.md` に pptxgenjs の利用規則（`#` なしの hex カラー指定など）が記述されているため、スクリプト生成の精度が向上します。
+
 ---
 
 ## PPTX スクリプトの再実行
